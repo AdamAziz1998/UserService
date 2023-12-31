@@ -1,5 +1,6 @@
 package com.usersService.user.model;
 
+import com.usersService.user.model.enums.Title;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -9,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -60,13 +62,24 @@ public class User {
     private String townCity;
 
     @NotNull
-    @Positive
-    @Column(name = "price", precision = 10, scale = 2)
-    private BigDecimal price;
+    @Column(name = "county")
+    private String county;
 
     @NotNull
-    @PositiveOrZero
-    @Column(name = "stockQuantity")
-    private int stockQuantity;
+    @Column(name = "postCode")
+    private String postCode;
+
+    @NotNull
+    @Column(name = "password")
+    private String password;
+
+    @NotNull
+    @Column(name = "lastLogin")
+    private LocalDateTime lastLogin;
+
+    @NotNull
+    @Column(name = "accountCreationTime")
+    private LocalDateTime accountCreationTime;
+
 
 }

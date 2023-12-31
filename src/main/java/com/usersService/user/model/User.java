@@ -80,6 +80,4 @@ public class User {
     @NotNull
     @Column(name = "accountCreationTime")
     private LocalDateTime accountCreationTime;
-
-
 }

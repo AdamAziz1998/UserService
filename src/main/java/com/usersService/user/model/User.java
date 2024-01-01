@@ -38,11 +38,11 @@ public class User {
     private String lastName;
 
     @NotNull
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
 
     @NotNull
-    @Column(name = "phoneNumber")
+    @Column(name = "phoneNumber", unique = true)
     private String phoneNumber;
 
     @NotNull
@@ -78,6 +78,6 @@ public class User {
     private LocalDateTime lastLogin;
 
     @NotNull
-    @Column(name = "accountCreationTime")
+    @Column(name = "accountCreationTime", updatable = false)
     private LocalDateTime accountCreationTime;
 }

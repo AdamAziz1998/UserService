@@ -1,6 +1,8 @@
 package com.usersService.user.dto;
 
 import com.usersService.user.model.enums.Title;
+import com.usersService.user.validation.UKPhoneNumber;
+import com.usersService.user.validation.UKPostCode;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -32,6 +34,7 @@ public class UpdateUserDTO {
 
     @NotNull(message = "phoneNumber is mandatory")
     @NotBlank(message = "phoneNumber is mandatory")
+    @UKPhoneNumber(message = "Please provide a valid UK phone number")
     private String phoneNumber;
 
     @NotNull(message = "houseNameNumber is mandatory")
@@ -56,8 +59,8 @@ public class UpdateUserDTO {
 
     @NotNull(message = "postCode is mandatory")
     @NotBlank(message = "postCode is mandatory")
+    @UKPostCode(message = "Please provide a valid UK postcode")
     private String postCode;
 
 }
 
-//add genref to phoneNumber, postcode, and email

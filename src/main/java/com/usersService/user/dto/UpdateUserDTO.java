@@ -1,6 +1,7 @@
 package com.usersService.user.dto;
 
 import com.usersService.user.model.enums.Title;
+import com.usersService.user.validation.EmailAddress;
 import com.usersService.user.validation.UKPhoneNumber;
 import com.usersService.user.validation.UKPostCode;
 import jakarta.validation.Valid;
@@ -30,6 +31,7 @@ public class UpdateUserDTO {
 
     @NotNull(message = "email is mandatory")
     @NotBlank(message = "email is mandatory")
+    @EmailAddress(message = "Please provide a valid email address")
     private String email;
 
     @NotNull(message = "phoneNumber is mandatory")

@@ -13,11 +13,11 @@ public class UserConverter {
         this.modelMapper = modelMapper;
     }
 
-    public UserDTO convertProductToProductDTO (User user) {
+    public UserDTO convertUserToUserDTO (User user) {
         return modelMapper.map(user, UserDTO.class);
     }
 
-    public User convertProductDTOToProduct (UserDTO productDTO) {
-        return modelMapper.map(productDTO, User.class);
+    public User convertUserDTOToUser (UserDTO userDTO) {
+        return modelMapper.map(userDTO, User.class);
     }
 }

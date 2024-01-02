@@ -2,6 +2,7 @@ package com.usersService.user.dto;
 
 import com.usersService.user.model.enums.Title;
 import com.usersService.user.validation.EmailAddress;
+import com.usersService.user.validation.Password;
 import com.usersService.user.validation.UKPhoneNumber;
 import com.usersService.user.validation.UKPostCode;
 import jakarta.validation.Valid;
@@ -11,7 +12,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class UpdateUserDTO {
+public class NewUserRequestDTO {
 
     @Valid
 
@@ -64,5 +65,9 @@ public class UpdateUserDTO {
     @UKPostCode(message = "Please provide a valid UK postcode")
     private String postCode;
 
+    @NotNull(message = "password is mandatory")
+    @NotBlank(message = "password is mandatory")
+    @Size(min = 8, message = "Password must be at least 8 characters long")
+    @Password
+    private String password;
 }
-

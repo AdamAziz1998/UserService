@@ -1,5 +1,7 @@
 package com.usersService.user.service;
 
+import com.usersService.user.dto.NewUserRequestDTO;
+import com.usersService.user.dto.UpdateUserRequestDTO;
 import com.usersService.user.dto.UserDTO;
 
 import java.util.List;
@@ -11,4 +13,10 @@ public interface UserService {
     UserDTO getUserById(UUID userId);
 
     UserDTO getUserByEmail(String userEmail);
+
+    UserDTO createUser(NewUserRequestDTO newUserRequestDTO);
+
+    UserDTO updateUser(UUID id, UpdateUserRequestDTO updateUserRequestDTO);
+
+    UserDTO deleteUserById(UUID id);
 }

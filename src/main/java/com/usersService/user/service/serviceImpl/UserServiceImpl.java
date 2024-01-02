@@ -1,6 +1,8 @@
 package com.usersService.user.service.serviceImpl;
 
 import com.usersService.user.convert.UserConverter;
+import com.usersService.user.dto.NewUserRequestDTO;
+import com.usersService.user.dto.UpdateUserRequestDTO;
 import com.usersService.user.dto.UserDTO;
 import com.usersService.user.model.User;
 import com.usersService.user.repository.UserRepository;
@@ -60,16 +62,14 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+    @Override
     public UserDTO createUser(NewUserRequestDTO newUserRequestDTO) {
 
         log.info("createUser Started");
 
         User newUser = new User();
 
-        newUser.setEmail(newUserRequestDTO.getEmail());
-        newUser.setFirstName(newUserRequestDTO.getFirstName());
-        newUser.setLastName(newUserRequestDTO.getLastName());
-        newUser.setPassword(newUserRequestDTO.getPassword());
+        //set all fields
 
 
         log.info("createUser before save id: " + newUser.getId());
@@ -78,10 +78,11 @@ public class UserServiceImpl implements UserService {
 
         log.info("createUser after save id: " + newUser.getId());
 
-        return userConverter.convertUsertoUserDTO(newUser);
+        return userConverter.convertUserToUserDTO(newUser);
     }
 
-    public UserDTO updateUser(String id, UpdateUserRequestDTO updateUserRequestDTO) {
+    @Override
+    public UserDTO updateUser(UUID id, UpdateUserRequestDTO updateUserRequestDTO) {
 
         log.info("updateUser Started id: " + id);
 
@@ -90,17 +91,18 @@ public class UserServiceImpl implements UserService {
         if (updatedUser == null) {
             return null;
         }
-
-        updatedUser.setEmail(updateUserRequestDTO.getEmail());
-        updatedUser.setFirstName(updateUserRequestDTO.getFirstName());
-        updatedUser.setLastName(updateUserRequestDTO.getLastName());
+        //set all fields settable
+        //updatedUser.setEmail(updateUserRequestDTO.getEmail());
+        //updatedUser.setFirstName(updateUserRequestDTO.getFirstName());
+        //updatedUser.setLastName(updateUserRequestDTO.getLastName());
 
         userRepository.save(updatedUser);
 
-        return userConverter.convertUsertoUserDTO(updatedUser);
+        return userConverter.convertUserToUserDTO(updatedUser);
 
     }
 
+    @Override
     public UserDTO deleteUserById(UUID id) {
 
         User deleteUser = userRepository.findById(id).orElse(null);
@@ -109,10 +111,9 @@ public class UserServiceImpl implements UserService {
             return null;
         }
 
-
         userRepository.deleteById(id);
 
-        return userConverter.convertUsertoUserDTO(deleteUser);
+        return userConverter.convertUserToUserDTO(deleteUser);
 
     }
 }

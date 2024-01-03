@@ -5,8 +5,16 @@ import com.usersService.user.dto.NewUserRequestDTO;
 import com.usersService.user.dto.UpdateUserRequestDTO;
 import com.usersService.user.dto.UserDTO;
 import com.usersService.user.model.User;
+import com.usersService.user.model.enums.Title;
 import com.usersService.user.repository.UserRepository;
 import com.usersService.user.service.UserService;
+import com.usersService.user.validation.EmailAddress;
+import com.usersService.user.validation.Password;
+import com.usersService.user.validation.UKPhoneNumber;
+import com.usersService.user.validation.UKPostCode;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -69,7 +77,18 @@ public class UserServiceImpl implements UserService {
 
         User newUser = new User();
 
-        //set all fields
+        newUser.setTitle(newUserRequestDTO.getTitle());
+        newUser.setFirstName(newUserRequestDTO.getFirstName());
+        newUser.setLastName(newUserRequestDTO.getLastName());
+        newUser.setEmail(newUserRequestDTO.getEmail());
+        newUser.setPhoneNumber(newUserRequestDTO.getPhoneNumber());
+        newUser.setHouseNameNumber(newUserRequestDTO.getHouseNameNumber());
+        newUser.setAddressLine1(newUserRequestDTO.getAddressLine1());
+        newUser.setAddressLine2(newUserRequestDTO.getAddressLine2());
+        newUser.setTownCity(newUserRequestDTO.getTownCity());
+        newUser.setCounty(newUserRequestDTO.getCounty());
+        newUser.setPostCode(newUserRequestDTO.getPostCode());
+        newUser.setPassword(newUserRequestDTO.getPassword());
 
 
         log.info("createUser before save id: " + newUser.getId());
@@ -91,10 +110,18 @@ public class UserServiceImpl implements UserService {
         if (updatedUser == null) {
             return null;
         }
-        //set all fields settable
-        //updatedUser.setEmail(updateUserRequestDTO.getEmail());
-        //updatedUser.setFirstName(updateUserRequestDTO.getFirstName());
-        //updatedUser.setLastName(updateUserRequestDTO.getLastName());
+
+        updatedUser.setTitle(updateUserRequestDTO.getTitle());
+        updatedUser.setFirstName(updateUserRequestDTO.getFirstName());
+        updatedUser.setLastName(updateUserRequestDTO.getLastName());
+        updatedUser.setEmail(updateUserRequestDTO.getEmail());
+        updatedUser.setPhoneNumber(updateUserRequestDTO.getPhoneNumber());
+        updatedUser.setHouseNameNumber(updateUserRequestDTO.getHouseNameNumber());
+        updatedUser.setAddressLine1(updateUserRequestDTO.getAddressLine1());
+        updatedUser.setAddressLine2(updateUserRequestDTO.getAddressLine2());
+        updatedUser.setTownCity(updateUserRequestDTO.getTownCity());
+        updatedUser.setCounty(updateUserRequestDTO.getCounty());
+        updatedUser.setPostCode(updateUserRequestDTO.getPostCode());
 
         userRepository.save(updatedUser);
 
